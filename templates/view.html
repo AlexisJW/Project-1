@@ -1,0 +1,188 @@
+
+<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" id="bootstrap-css">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- for Rating -->
+<link href="{{ url_for('static', filename='css_js_rating/style_ratingUser.css') }}" rel="stylesheet" id="bootstrap-css">
+<link href="{{ url_for('static', filename='css_js_rating/style.css') }}" rel="stylesheet" id="bootstrap-css">
+<link href="{{ url_for('static', filename='css_js_rating/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+<script src="{{ url_for('static', filename='css_js_rating/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='css_js_rating/jquery.min.js') }}"></script>
+
+<title>OurBooks | Detail</title>
+{% extends "layouts/layout.html" %}
+
+{% block heading %}
+
+{% endblock %}
+
+
+{% block body %}
+<body>
+  <section class="hero-area bg-img bg-overlay-2by5" style="background-image: url({{ url_for('static', filename='img/bg-img/searchBook.jpg') }});">
+      <div class="container h-100">
+          <div class="row h-100 align-items-center">
+              <div class="col-12">
+                  <!-- Hero Content -->
+                  <div class="hero-content text-center">
+                      <h2>Leave your comment for {{ title }}</h2>
+                      <a href="#" class="btn clever-btn">OurBooks-Alex</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="popular-courses-area section-padding-100-0" style="background-image: url({{ url_for('static', filename='img/core-img/texture.png')}});">
+      <div class="container">
+
+          <div class="row">
+              <!-- Single Popular Course -->
+              <div class="col-12 col-md-6 col-lg-3">
+                  <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
+                      <img src="{{ url_for('static', filename='img/bg-img/3.png')}}" alt="">
+                      <!-- Course Content -->
+                      <div class="course-content">
+                          <h4>Author: {{ author }}</h4>
+                             <div class="meta d-flex align-items-center">
+                          <p><strong>Title: </strong> {{ title }}</p>
+                          </div>
+                          <div class="meta d-flex align-items-center">
+                            <p><strong>Isbn:</strong> {{ isbn }}</p>
+                          </div>
+                          <div class="meta d-flex align-items-center">
+                            <p><strong>Year:</strong> {{ year }}</p>
+                          </div>
+                      </div>
+                      <!-- Seat Rating Fee -->
+                      <div class="seat-rating-fee d-flex justify-content-between">
+                        <div class="course-fee h-100">
+
+                        </div>
+                          <div class="seat-rating h-100 d-flex align-items-center">
+                              <div class="seat">
+
+                              </div>
+                              <div class="rating">
+                                  <i class="fa fa-star" aria-hidden="true"></i> {{ rating }}
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-12 col-md-6 col-lg-9">
+                <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
+                  <div class="container">
+                    <div class="row">
+              <div class="col-sm-10 col-sm-offset-1" id="logout">
+                  <div class="page-header">
+                      <center><h1 class="reviews">Leave your comment</h1></center>
+                      <div class="logout">
+
+                      </div>
+                  </div>
+                  <div class="comment-tabs">
+                      <ul class="nav nav-tabs" role="tablist">
+                          <li class="active"><a href="#comments" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Comments</h4></a></li>
+                          <li><a href="#add-comment" role="tab" data-toggle="tab"><h4 class="reviews text-capitalize">Add comment</h4></a></li>
+                      </ul>
+                      <div class="tab-content">
+
+                          <div class="tab-pane active" id="comments">
+                            {% for comment in comments %}
+                            <div class="tab-pane active" id="comments">
+                              <ul class="media-list">
+                                <li class="media">
+                                  <a class="pull-left" href="#">
+                                    <img class="media-object img-circle" src="{{ url_for('static', filename='img/bg-img/user_comment.png') }}" alt="profile">
+                                  </a>
+                                  <div class="media-body">
+                                    <div class="well well-lg">
+                                        <h4 class="media-heading text-uppercase reviews">{{ comment.username }} </h4>
+                                        <ul class="media-date text-uppercase reviews list-inline">
+                                          <div class="rating_user">
+                                            {% if comment.rating == 5 %}
+                                            <input type="radio" checked/><label for="star1">5 star</label>
+                                            {% else %}
+                                            <input type="radio" /><label for="star1">5 star</label>
+                                            {% endif %}
+
+                                            {% if comment.rating == 4 %}
+                                            <input type="radio" checked/><label for="star4">4 star</label>
+                                            {% else %}
+                                            <input type="radio" /><label for="star1">4 star</label>
+                                            {% endif %}
+
+                                            {% if comment.rating == 3 %}
+                                            <input type="radio" checked/><label for="star3">3 star</label>
+                                            {% else %}
+                                            <input type="radio" /><label for="star3">3 star</label>
+                                            {% endif %}
+
+                                            {% if comment.rating == 2 %}
+                                            <input type="radio" checked/><label for="star2">2 star</label>
+                                            {% else %}
+                                            <input type="radio" /><label for="star2">2 star</label>
+                                            {% endif %}
+
+                                            {% if comment.rating == 1 %}
+                                            <input type="radio" checked/><label for="star1">1 star</label>
+                                            {% else %}
+                                            <input type="radio" /><label for="star1">1 star</label>
+                                            {% endif %}
+                                          </div>
+                                        </ul><br>
+
+                                        <p class="media-comment">
+                                          {{ comment.comment }}
+                                        </p>
+                                    </div>
+                                  </div>
+                                </div>
+                                  {% endfor %}
+                          </div>
+
+                          <div class="tab-pane" id="add-comment">
+                              <form method="POST" class="form-horizontal" id="commentForm" role="form">
+                                  <div class="form-group">
+                                      <label for="email" class="col-sm-2 control-label"><h4>Comment</h4></label>
+                                      <div class="col-sm-10">
+                                        <textarea class="form-control" name="addComment" id="addComment" rows="5"></textarea>
+                                      </div>
+                                  </div>
+                                  <div class="rating">
+                                    <input type="radio" id="star1" name="rating" value="5" /><label for="star1">1 star</label>
+                                    <input type="radio" id="star2" name="rating" value="4" /><label for="star2">2 stars</label>
+                                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3">3 stars</label>
+                                    <input type="radio" id="star4" name="rating" value="2" /><label for="star4">4 stars</label>
+                                    <input type="radio" id="star5" name="rating" value="1" /><label for="star5">5 stars</label>
+                                  </div>
+                                  <div class="form-group">
+                                      <div class="col-sm-offset-2 col-sm-10">
+                                          <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> <h4>Summit comment</h4></button>
+                                      </div>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+             </div>
+             </div>
+
+                  </div>
+                </div>
+              </div>
+
+          </div>
+      </div>
+  </section>
+
+
+
+
+  <script src="{{ url_for('static', filename='boostrap.min.js') }}"></script>
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+</body>
+{% endblock %}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>OurBooks | Home</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='img/core-img/favicon.ico')}}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+    <body>
+        {% include "includes/_message.html "%}
+        <!-- Preloader -->
+        <div id="preloader">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- ##### Header Area Start ##### -->
+        <header class="header-area">
+
+            <!-- Top Header Area -->
+            <div class="top-header-area d-flex justify-content-between align-items-center">
+
+            </div>
+
+            <!-- Navbar Area -->
+            <div class="clever-main-menu">
+                <div class="classy-nav-container breakpoint-off">
+                    <!-- Menu -->
+                    <nav class="classy-navbar justify-content-between" id="cleverNav">
+
+                        <!-- Logo -->
+                        <a class="nav-brand" href="{{ url_for('index', username_data = username_data) }}"><h5>OurBooks-Alex</h5></a>
+
+                        <!-- Navbar Toggler -->
+                        <div class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="{{ url_for('index', username_data = username_data)}}">Home</a></li>
+                                    <li><a href="#">Book Page</a></li>
+                                </ul>
+
+                                <!-- Search Button -->
+                                <div class="search-area">
+                                    <form action="{{ url_for('search', username_data = username_data ) }}" method="POST">
+                                        <input type="search" name="search" id="search" placeholder="Search">
+                                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                    </form>
+                                </div>
+
+                                <!-- Register / Login -->
+                                <div class="register-login-area">
+                                    {% if session.log %}
+                                    <!-- profil / Logout -->
+                            <div class="login-state d-flex align-items-center">
+                                <div class="user-name mr-30">
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" id="userName" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn active">{{ username_data }}</a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userName">
+                                            <a class="dropdown-item" href="{{ url_for('logout') }}" class="btn active">Logout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="userthumb">
+                                    <img src="{{ url_for('static', filename='img/bg-img/user_comment.png') }}" alt="Do you want to logout?">
+                                </div>
+                            </div>
+                                    {% else %}
+                                    <a href="{{ url_for('signup')}}" class="btn">Register</a>
+                                    <a href="{{ url_for('login')}}" class="btn active">Login</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- ##### Header Area End ##### -->
+        {% block heading %}
+        {% endblock %}
+
+        {% block body %}
+        {% endblock %}
+
+        <!-- ##### Footer Area Start ##### -->
+        <footer class="footer-area">
+            <!-- Top Footer Area -->
+            <div class="top-footer-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Footer Logo -->
+                            <div class="footer-logo">
+                                <a href="{{ url_for('index') }}">OurBooks-Alex</a>
+                            </div>
+                            <!-- Copywrite -->
+                            <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer Area -->
+
+        </footer>
+        <!-- ##### Footer Area End ##### -->
+
+        <!-- ##### All Javascript Script ##### -->
+        <!-- jQuery-2.2.4 js -->
+        <script src="{{ url_for('static', filename='js/jquery/jquery-2.2.4.min.js')}}"></script>
+        <!-- Popper js -->
+        <script src="{{ url_for('static', filename='js/bootstrap/popper.min.js')}}"></script>
+        <!-- Bootstrap js -->
+        <script src="{{ url_for('static', filename='js/bootstrap/bootstrap.min.js')}}"></script>
+        <!-- All Plugins js -->
+        <script src="{{ url_for('static', filename='js/plugins/plugins.js')}}"></script>
+        <!-- Active js -->
+        <script src="{{ url_for('static', filename='js/active.js')}}"></script>
+    </body>
+
+    </html>

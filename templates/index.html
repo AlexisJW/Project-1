@@ -1,0 +1,103 @@
+{% extends "layouts/layout.html" %}
+
+{% block heading %}
+
+{% endblock %}
+
+{% block body %}
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area bg-img bg-overlay-2by5" style="background-image: url({{ url_for('static', filename='img/bg-img/searchBook.jpg') }});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <!-- Hero Content -->
+                    <div class="hero-content text-center">
+                        <h2>Pick your favorite Book</h2>
+                        <a href="#" class="btn clever-btn">OurBooks-Alex</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### Cool Facts Area Start ##### -->
+
+    <!-- ##### Cool Facts Area End ##### -->
+
+    <!-- ##### Popular Courses Start ##### -->
+    <section class="popular-courses-area section-padding-100-0" style="background-image: url({{ url_for('static', filename='img/core-img/texture.png')}});">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>Please! Take a look</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Single Popular Course -->
+                {% for book in books %}
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="250ms">
+                        <img src="{{ url_for('static', filename='img/bg-img/3.png')}}" alt="">
+                        <!-- Course Content -->
+                        <div class="course-content">
+                            <h6>Author: {{ book.author }}</h6>
+                               <div class="meta d-flex align-items-center">
+                            <p><strong>Title: </strong> {{ book.title }}</p>
+                            </div>
+                            <div class="meta d-flex align-items-center">
+                              <p><strong>Isbn:</strong> {{ book.isbn }}</p>
+                            </div>
+                            <div class="meta d-flex align-items-center">
+                              <p><strong>Year:</strong> {{ book.year }}</p>
+                            </div>
+                        </div>
+                        <!-- Seat Rating Fee -->
+                        <div class="seat-rating-fee d-flex justify-content-between">
+
+                            {% if session.log %}
+                            <div class="seat-rating h-100 d-flex align-items-center">
+                              <div class="seat">
+                              </div>
+                              <div class="rating">
+                                  <i class="fa fa-star" aria-hidden="true"></i> {{ ratings[books.index(book)] }}
+                              </div>
+                            </div>
+                            <div class="course-fee h-100">
+                                <a href="{{url_for('view', username_data = username_data, author = book.author, title = book.title, isbn = book.isbn, year = book.year, rating = ratings[books.index(book)]) }}" class="free">Comment</a>
+                            </div>
+                            {% else %}
+                            <div class="seat-rating-fee d-flex justify-content-between">
+                              <div class="course-fee h-100">
+
+                              </div>
+                                <div class="seat-rating h-100 d-flex align-items-center">
+                                    <div class="seat">
+
+                                    </div>
+                                    <div class="rating">
+                                        <i class="fa fa-star" aria-hidden="true"></i> {{ ratings[books.index(book)] }}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    <!-- ##### Popular Courses End ##### -->
+
+    <!-- ##### Best Tutors Start ##### -->
+
+    <!-- ##### Blog Area End ##### -->
+{% endblock %}
